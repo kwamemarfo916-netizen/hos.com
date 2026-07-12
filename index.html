@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horn of Salvation Cathedral (H.O.S) | Kasoa, Semenshyia</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --card: #f6f8fc;
+    --card-2: #eef2fa;
+    --border: #dbe3f0;
+    --yellow: #2f6fed;
+    --black-2: #e8edf9;
+    --text: #10182b;
+    --text-dim: #4b5875;
+    --text-faint: #8590a8;
+    --radius: 18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans', sans-serif;
+    padding-bottom:78px; overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Sora', sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+
+  body::before{
+    content:"";position:fixed;top:-200px;right:-150px;width:500px;height:500px;
+    background:radial-gradient(circle, rgba(47,111,237,0.18), transparent 70%);z-index:-1;
+  }
+  body::after{
+    content:"";position:fixed;bottom:-250px;left:-150px;width:500px;height:500px;
+    background:radial-gradient(circle, rgba(47,111,237,0.10), transparent 70%);z-index:-1;
+  }
+
+  /* Placeholder photo blocks — swap the <img> back in once real photos are ready */
+  .photo-slot{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    width:100%; height:100%;
+    background:repeating-linear-gradient(135deg, #eef2fa, #eef2fa 10px, #e4eaf6 10px, #e4eaf6 20px);
+    border:1px dashed var(--border); color:var(--text-faint);
+    font-size:12px; font-weight:600; text-align:center; padding:10px;
+  }
+  .photo-slot .ic{font-size:22px; opacity:.6;}
+
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:50; padding:14px 16px;
+    background:rgba(255,255,255,0.85); backdrop-filter:blur(14px); border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;letter-spacing:-0.02em;color:var(--yellow);
+    background:var(--card);border:1px solid var(--border);padding:7px 18px 7px 8px;border-radius:999px;}
+  .brand-logo{width:32px;height:32px;border-radius:50%;object-fit:cover;background:var(--black-2);}
+  nav.links{display:flex;align-items:center;gap:6px;}
+  nav.links a{font-size:14px;font-weight:600;color:var(--text-dim);padding:9px 16px;border-radius:999px;transition:.2s;}
+  nav.links a:hover{background:var(--card);color:var(--text);}
+  .nav-cta{background:var(--yellow);color:#ffffff !important;padding:9px 18px !important;}
+  .menu-btn{display:none;background:var(--card);border:1px solid var(--border);width:40px;height:40px;border-radius:12px;color:var(--text);font-size:18px;cursor:pointer;}
+
+  /* Hero */
+  .hero{padding:44px 0 40px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+  .eyebrow-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:999px;
+    background:var(--card);border:1px solid var(--border);color:var(--text-dim);}
+  .badge.on-yellow{background:rgba(47,111,237,0.14);color:var(--yellow);border-color:rgba(47,111,237,0.3);}
+  .badge.on-dark{background:rgba(16,24,43,0.05);color:var(--text-dim);border-color:rgba(16,24,43,0.1);}
+  .hero h1{font-size:36px;line-height:1.12;font-weight:800;letter-spacing:-0.02em;}
+  .hero h1 span{color:var(--yellow);}
+  .hero p.lede{margin-top:14px;max-width:520px;color:var(--text-dim);font-size:15.5px;line-height:1.6;}
+  .hero-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;padding:14px 24px;border-radius:999px;border:none;cursor:pointer;}
+  .btn-primary{background:var(--yellow);color:#ffffff;}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+
+  .hero-photo{border-radius:24px;border:1px solid var(--border);overflow:hidden;position:relative;aspect-ratio:16/10;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.9) 100%);}
+  .hero-photo .cap{position:absolute;left:16px;bottom:14px;z-index:2;font-size:13px;font-weight:600;color:#e8ecf7;}
+
+  /* Info strip */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:26px 0 40px;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;}
+  .stat-card .label{color:var(--text-faint);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+  .stat-card .value{font-family:'Sora',sans-serif;font-size:19px;font-weight:700;margin-top:8px;color:var(--yellow);}
+  .stat-card .sub{color:var(--text-dim);font-size:12px;margin-top:4px;}
+
+  section{padding:40px 0;}
+  .section-head{margin-bottom:24px;}
+  .section-head .kicker{font-size:12.5px;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em;}
+  .section-head h2{font-size:24px;font-weight:700;margin-top:8px;}
+  .section-head p{color:var(--text-dim);font-size:14px;margin-top:8px;max-width:560px;}
+
+  /* People / ministry cards with photo slots */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .prog-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;}
+  .prog-photo{aspect-ratio:4/3;overflow:hidden;position:relative;}
+  .prog-photo img{width:100%;height:100%;object-fit:cover;}
+  .prog-photo .tag{position:absolute;top:10px;left:10px;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;
+    background:rgba(255,255,255,0.85);color:var(--yellow);border:1px solid rgba(16,24,43,0.1);backdrop-filter:blur(4px);z-index:2;}
+  .prog-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .prog-body h4{font-size:15.5px;font-weight:700;}
+  .prog-body .desc{color:var(--text-dim);font-size:12.5px;line-height:1.5;flex:1;}
+
+  /* Pastor spotlight card */
+  .pastor-card{background:linear-gradient(135deg, var(--card), var(--card-2));border:1px solid var(--border);border-radius:24px;
+    padding:26px;display:flex;gap:18px;align-items:center;}
+  .pastor-photo{width:100px;height:100px;border-radius:20px;overflow:hidden;flex-shrink:0;border:1px solid var(--border);}
+  .pastor-photo img{width:100%;height:100%;object-fit:cover;}
+  .pastor-card h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+  .pastor-card .role{color:var(--yellow);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+  .pastor-card p{color:var(--text-dim);font-size:14px;line-height:1.65;}
+
+  /* Gallery — max 3 campus images */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .gallery-grid .g-item{border-radius:14px;overflow:hidden;aspect-ratio:1/1;border:1px solid var(--border);}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;transition:.3s;}
+  .gallery-grid a:hover img{transform:scale(1.06);}
+
+  /* Social */
+  .social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .social-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;}
+  .social-card .circle{width:44px;height:44px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;background:rgba(47,111,237,0.16);color:var(--yellow);}
+  .social-card p{font-size:12px;color:var(--text-faint);margin-top:4px;}
+  .social-card .visit{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--yellow);}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;}
+  .contact-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .ico{width:38px;height:38px;border-radius:11px;background:rgba(47,111,237,0.14);color:var(--yellow);
+    display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+  .contact-row h5{font-size:13.5px;font-weight:700;}
+  .contact-row p, .contact-row a{font-size:13px;color:var(--text-dim);margin-top:2px;line-height:1.5;}
+  .apply-card{background:linear-gradient(160deg, var(--black-2), #ffffff);border-radius:var(--radius);padding:24px;
+    display:flex;flex-direction:column;justify-content:center;gap:12px;border:1px solid rgba(47,111,237,0.3);}
+  .apply-card h4{font-size:19px;font-weight:700;}
+  .apply-card p{color:var(--text-dim);font-size:13px;line-height:1.55;}
+  .apply-note{font-family:'Sora',sans-serif;font-size:13.5px;color:var(--yellow);font-weight:700;}
+  .map-frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-top:16px;}
+  .map-frame iframe{width:100%;height:260px;border:none;display:block;}
+
+  footer{text-align:center;padding:32px 20px 20px;color:var(--text-faint);font-size:12.5px;border-top:1px solid var(--border);margin-top:16px;}
+  footer .brand{margin:0 auto 14px;width:fit-content;}
+
+  .wa-float{position:fixed;right:18px;bottom:88px;z-index:60;width:54px;height:54px;border-radius:50%;
+    background:var(--yellow);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(47,111,237,0.35);font-size:22px;color:#ffffff;}
+
+  .bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:55;background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);
+    border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 6px 12px;}
+  .bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;color:var(--text-faint);font-weight:600;}
+  .bottom-nav a.active{color:var(--yellow);}
+  .bottom-nav .ic{font-size:19px;}
+
+  @media (min-width:760px){
+    body{padding-bottom:0;}
+    .bottom-nav{display:none;}
+    .wa-float{bottom:24px;}
+    .hero h1{font-size:50px;}
+    .hero-grid{grid-template-columns:1.05fr .95fr;align-items:center;}
+    .contact-grid{grid-template-columns:1.1fr .9fr;}
+  }
+  @media (max-width:759px){
+    nav.links{display:none;}
+    .menu-btn{display:flex;align-items:center;justify-content:center;}
+    .social-grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:1fr;}
+    .pastor-card{flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="photo-slot" style="width:32px;height:32px;border-radius:50%;padding:0;"><span class="ic" style="font-size:12px;">＋</span></span>
+      H.O.S
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#ministries">Ministries</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Visit Us</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow-row">
+          <span class="badge on-yellow">🔥 Lighthouse West End City Churches</span>
+          <span class="badge on-dark">📍 Kasoa Semenshyia, Yellow Container</span>
+        </div>
+        <h1>Horn of <span>Salvation</span> Cathedral</h1>
+        <p class="lede">Known for short as H.O.S — a house of worship raising a people of purpose in Kasoa. We're part of the Lighthouse West End City Churches family, formerly known as Anagkazo (that's how you'll still find us on Google Maps).</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get Directions</a>
+          <a href="#ministries" class="btn btn-ghost">Our Ministries</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="photo-slot" style="aspect-ratio:16/10;border-radius:24px;">
+          <span class="ic">⛪</span>
+          Campus photo 1 — add campus1.jpg
+        </div>
+        <span class="cap">H.O.S Cathedral — Kasoa Semenshyia</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-card">
+      <div class="label">Network</div>
+      <div class="value">Lighthouse WECC</div>
+      <div class="sub">West End City Churches family</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Formerly Known As</div>
+      <div class="value">Anagkazo</div>
+      <div class="sub">Search this name on Google Maps</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Location</div>
+      <div class="value">Kasoa Semenshyia</div>
+      <div class="sub">Yellow Container area</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <div class="kicker">Meet Our Shepherd</div>
+      <h2>Our Pastor</h2>
+    </div>
+    <div class="pastor-card">
+      <div class="pastor-photo">
+        <div class="photo-slot" style="border-radius:20px;">
+          <span class="ic">👤</span>
+          pastor.jpg
+        </div>
+      </div>
+      <div>
+        <div class="role">Resident Pastor</div>
+        <h3>[Pastor's Name]</h3>
+        <p>A shepherd's heart devoted to raising disciples and building a Christ-centered community at Horn of Salvation Cathedral. Replace this space with your pastor's bio and photo (<code>pastor.jpg</code>).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ministries">
+    <div class="section-head">
+      <div class="kicker">Serving Together</div>
+      <h2>Our Ministries</h2>
+      <p>The voices and gifts that make H.O.S come alive every service.</p>
+    </div>
+    <div class="grid-2">
+      <div class="prog-card">
+        <div class="prog-photo">
+          <div class="photo-slot"><span class="ic">🎤</span>choir.jpg</div>
+          <span class="tag">Worship</span>
+        </div>
+        <div class="prog-body">
+          <h4>The H.O.S Choir</h4>
+          <p class="desc">Leading the congregation into worship with anointed voices every Sunday and at special services.</p>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-photo">
+          <div class="photo-slot"><span class="ic">💃</span>dancers.jpg</div>
+          <span class="tag">Dance</span>
+        </div>
+        <div class="prog-body">
+          <h4>Dancing Stars</h4>
+          <p class="desc">Our vibrant dance ministry, ministering through movement and celebrating God's presence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="section-head">
+      <div class="kicker">Our Campus</div>
+      <h2>Gallery</h2>
+      <p>A look at our campus at Kasoa Semenshyia, Yellow Container.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item"><div class="photo-slot"><span class="ic">⛪</span>campus1.jpg</div></div>
+      <div class="g-item"><div class="photo-slot"><span class="ic">🏛️</span>campus2.jpg</div></div>
+      <div class="g-item"><div class="photo-slot"><span class="ic">🌇</span>campus3.jpg</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="kicker">Stay Connected</div>
+      <h2>Follow H.O.S</h2>
+    </div>
+    <div class="social-grid">
+      <a class="social-card" href="#" target="_blank" rel="noopener">
+        <div class="circle">f</div>
+        <strong>Facebook</strong>
+        <p>Facebook Page — add your link</p>
+        <span class="visit">Visit →</span>
+      </a>
+      <a class="social-card" href="#" target="_blank" rel="noopener">
+        <div class="circle">◎</div>
+        <strong>Instagram</strong>
+        <p>Instagram — add your link</p>
+        <span class="visit">Visit →</span>
+      </a>
+      <a class="social-card" href="#" target="_blank" rel="noopener">
+        <div class="circle">♪</div>
+        <strong>TikTok</strong>
+        <p>TikTok — add your link</p>
+        <span class="visit">Visit →</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <div class="kicker">Get In Touch</div>
+      <h2>Visit Us</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="ico">📍</div>
+          <div>
+            <h5>Location</h5>
+            <p>Kasoa Semenshyia, Yellow Container — formerly Anagkazo (search "Anagkazo" on Google Maps to find us)</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ico">📞</div>
+          <div>
+            <h5>Phone</h5>
+            <p>[Add phone number]</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ico">📧</div>
+          <div>
+            <h5>Email</h5>
+            <p>[Add email address]</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ico">🕐</div>
+          <div>
+            <h5>Service Times</h5>
+            <p>[Add Sunday / midweek service times]</p>
+          </div>
+        </div>
+        <div class="map-frame">
+          <iframe src="https://www.google.com/maps?q=Anagkazo%20Kasoa%20Semenshyia%20Yellow%20Container%20Ghana&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="apply-card">
+        <h4>Join Us This Sunday</h4>
+        <p>We'd love to welcome you home at Horn of Salvation Cathedral.</p>
+        <div class="apply-note">Formerly Anagkazo · Kasoa Semenshyia</div>
+        <a href="#" class="btn btn-primary" style="justify-content:center;">Plan Your Visit</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">
+    <span class="photo-slot" style="width:32px;height:32px;border-radius:50%;padding:0;"><span class="ic" style="font-size:12px;">＋</span></span>
+    H.O.S
+  </div>
+  <p>© 2026 Horn of Salvation Cathedral (H.O.S). All Rights Reserved.</p>
+</footer>
+
+<a class="wa-float" href="#" target="_blank" rel="noopener" aria-label="Chat with us">💬</a>
+
+<nav class="bottom-nav">
+  <a href="#top" class="active"><span class="ic">🏠</span>Home</a>
+  <a href="#about"><span class="ic">✨</span>Pastor</a>
+  <a href="#ministries"><span class="ic">🎤</span>Ministries</a>
+  <a href="#contact"><span class="ic">📞</span>Contact</a>
+</nav>
+
+<script>
+  document.querySelector('.menu-btn')?.addEventListener('click', () => {
+    const links = document.querySelector('nav.links');
+    const open = links.style.display === 'flex';
+    if (open) { links.style.display = 'none'; return; }
+    links.style.display = 'flex';
+    links.style.position = 'absolute';
+    links.style.top = '64px';
+    links.style.right = '16px';
+    links.style.flexDirection = 'column';
+    links.style.background = 'var(--card)';
+    links.style.border = '1px solid var(--border)';
+    links.style.borderRadius = '16px';
+    links.style.padding = '10px';
+    links.style.gap = '4px';
+  });
+</script>
+
+</body>
+  </html>
+  
